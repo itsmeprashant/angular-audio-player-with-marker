@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let marker of markers" [class.active]="marker.time == selectedMarker.time" (click)="selectMarker(marker)">{{ marker.text }} </li>
+</ul>

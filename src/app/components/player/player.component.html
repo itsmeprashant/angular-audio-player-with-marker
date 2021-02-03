@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="content">
+    <div class="media">
+      <mat-card>
+        <div class="time-wrapper">
+          <div>{{ state?.readableCurrentTime }}</div>
+          <div>{{ state?.readableDuration }}</div>
+        </div>
+        <div class="slider-wrapper">
+          <mat-slider
+            class="slider"
+            min="0"
+            [max]="state?.duration"
+            step="1"
+            [value]="state?.currentTime"
+            (input)="onSliderChangeEnd($event)"
+            [disabled]="state?.error"
+          ></mat-slider>
+          <div class="marker-container">
+            <div
+              *ngFor="let marker of markers"
+              class="marker"
+              [title]="marker.time"
+              [class.active]="marker.time === selectedMarker.time"
+              [style.left.%]="marker.left"
+              (click)="selectMarker(marker)"
+            ></div>
+          </div>
+        </div>
+
+        <mat-toolbar-row class="media-action-bar">
+          <button mat-button (click)="previous()">
+            <mat-icon mat-list-icon>replay_10</mat-icon>
+          </button>
+
+          <button
+            mat-button
+            (click)="play()"
+            [disabled]="state?.error"
+            *ngIf="!state?.playing"
+          >
+            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+          </button>
+
+          <button mat-button (click)="pause()" *ngIf="state?.playing">
+            <mat-icon mat-list-icon>pause</mat-icon>
+          </button>
+
+          <button mat-button (click)="next()">
+            <mat-icon mat-list-icon>forward_10</mat-icon>
+          </button>
+        </mat-toolbar-row>
+      </mat-card>
+    </div>
+  </div>
+</div>

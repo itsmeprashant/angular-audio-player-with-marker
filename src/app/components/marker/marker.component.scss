@@ -1,0 +1,12 @@
+ul {
+    list-style: none;
+    width: 200px;
+    li {
+        background-color: #EEE;
+        margin-bottom: 10px;
+        &.active {
+            background-color: red;
+        }   
+    }
+    
+}
